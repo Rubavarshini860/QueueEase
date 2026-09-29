@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0">
+
+    <title>
+        QueueEase | OPD Queue Management
+    </title>
+
+    <link
+            rel="stylesheet"
+            href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+     ===================================================== -->
+
+<aside class="sidebar">
+
+
+    <div class="sidebar-logo">
+
+        <div class="logo-icon">
+            Q
+        </div>
+
+        <div>
+
+            <h1>
+                QueueEase
+            </h1>
+
+            <span>
+                OPD Management
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav class="sidebar-nav">
+
+
+        <p class="nav-title">
+            MAIN MENU
+        </p>
+
+
+        <button
+                class="nav-item active"
+                onclick="showDashboard()">
+
+            <span>
+                🏠
+            </span>
+
+            Dashboard
+
+        </button>
+
+
+        <button
+                class="nav-item"
+                onclick="showSection('doctorsSection')">
+
+            <span>
+                👨‍⚕️
+            </span>
+
+            Doctors
+
+        </button>
+
+
+        <button
+                class="nav-item"
+                onclick="showSection('patientsSection')">
+
+            <span>
+                👥
+            </span>
+
+            Patients
+
+        </button>
+
+
+        <button
+                class="nav-item"
+                onclick="showSection('tokenSection')">
+
+            <span>
+                🎫
+            </span>
+
+            Generate Token
+
+        </button>
+
+
+        <button
+                class="nav-item"
+                onclick="showSection('queueSection')">
+
+            <span>
+                📋
+            </span>
+
+            Live Queue
+
+        </button>
+
+
+        <button
+                class="nav-item"
+                onclick="showSection('historySection')">
+
+            <span>
+                📜
+            </span>
+
+            Token History
+
+        </button>
+
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="system-card">
+
+            <div class="online-dot"></div>
+
+            <div>
+
+                <strong>
+                    System Online
+                </strong>
+
+                <small>
+                    Backend connected
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN WRAPPER
+     ===================================================== -->
+
+<div class="main-wrapper">
+
+
+    <!-- =================================================
+         TOP BAR
+         ================================================= -->
+
+    <header class="topbar">
+
+
+        <div>
+
+            <h2 id="pageTitle">
+                Dashboard
+            </h2>
+
+            <p id="pageSubtitle">
+                Welcome back! Here's today's OPD overview.
+            </p>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+
+            <div class="date-display">
+
+                📅
+
+                <span id="currentDate">
+                    --
+                </span>
+
+            </div>
+
+
+            <div class="profile">
+
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Admin
+                    </strong>
+
+                    <small>
+                        Hospital Staff
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =================================================
+         DASHBOARD
+         ================================================= -->
+
+    <main
+            id="dashboardSection"
+            class="page-section">
+
+
+        <section class="welcome-banner">
+
+
+            <div>
+
+                <span class="welcome-label">
+                    QUEUEEASE
+                </span>
+
+
+                <h1>
+                    Smart OPD Queue Management
+                </h1>
+
+
+                <p>
+                    Manage patients, doctors and tokens
+                    efficiently from one place.
+                </p>
+
+
+            </div>
+
+
+            <div class="welcome-illustration">
+                🎫
+            </div>
+
+
+        </section>
+
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    👨‍⚕️
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Total Doctors
+                    </span>
+
+                    <h3 id="doctorCount">
+                        0
+                    </h3>
+
+                    <small>
+                        Registered doctors
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    👥
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Total Patients
+                    </span>
+
+                    <h3 id="patientCount">
+                        0
+                    </h3>
+
+                    <small>
+                        Registered patients
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    🎫
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Waiting Tokens
+                    </span>
+
+                    <h3 id="waitingCount">
+                        0
+                    </h3>
+
+                    <small>
+                        Currently waiting
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    🩺
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Currently Serving
+                    </span>
+
+                    <h3 id="servingCount">
+                        0
+                    </h3>
+
+                    <small>
+                        Being consulted
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                    <p>
+                        Frequently used queue operations
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="quick-grid">
+
+
+                <div
+                        class="quick-card"
+                        onclick="showSection('doctorsSection')">
+
+
+                    <div class="quick-icon blue-bg">
+                        👨‍⚕️
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Manage Doctors
+                        </h3>
+
+                        <p>
+                            View registered doctors
+                        </p>
+
+                    </div>
+
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+
+                </div>
+
+
+
+                <div
+                        class="quick-card"
+                        onclick="showSection('patientsSection')">
+
+
+                    <div class="quick-icon green-bg">
+                        👥
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Manage Patients
+                        </h3>
+
+                        <p>
+                            View registered patients
+                        </p>
+
+                    </div>
+
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+
+                </div>
+
+
+
+                <div
+                        class="quick-card featured"
+                        onclick="showSection('tokenSection')">
+
+
+                    <div class="quick-icon blue-bg">
+                        🎫
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Generate Token
+                        </h3>
+
+                        <p>
+                            Create a new OPD token
+                        </p>
+
+                    </div>
+
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+
+                </div>
+
+
+
+                <div
+                        class="quick-card"
+                        onclick="showSection('queueSection')">
+
+
+                    <div class="quick-icon orange-bg">
+                        📋
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Live Queue
+                        </h3>
+
+                        <p>
+                            Monitor waiting patients
+                        </p>
+
+                    </div>
+
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- WORKFLOW -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        How QueueEase Works
+                    </h2>
+
+                    <p>
+                        Simple workflow for efficient OPD management
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="workflow">
+
+
+                <div class="workflow-step">
+
+                    <div class="workflow-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Register
+                    </h3>
+
+                    <p>
+                        Register doctors and patients
+                        in the system.
+                    </p>
+
+                </div>
+
+
+
+                <div class="workflow-step">
+
+                    <div class="workflow-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Generate
+                    </h3>
+
+                    <p>
+                        Generate a token for
+                        the patient.
+                    </p>
+
+                </div>
+
+
+
+                <div class="workflow-step">
+
+                    <div class="workflow-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Manage
+                    </h3>
+
+                    <p>
+                        Monitor the live queue
+                        and waiting time.
+                    </p>
+
+                </div>
+
+
+
+                <div class="workflow-step">
+
+                    <div class="workflow-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Serve
+                    </h3>
+
+                    <p>
+                        Call the next patient
+                        for consultation.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =================================================
+         DOCTORS
+         ================================================= -->
+
+    <section
+            id="doctorsSection"
+            class="page-section content-section hidden">
+
+
+        <div class="section-header">
+
+
+            <div>
+
+                <span class="section-label">
+                    MANAGEMENT
+                </span>
+
+                <h2>
+                    👨‍⚕️ Doctors
+                </h2>
+
+                <p>
+                    View doctors registered in QueueEase.
+                </p>
+
+            </div>
+
+
+            <button
+                    class="secondary-button"
+                    onclick="loadDoctors()">
+
+                ↻ Refresh
+
+            </button>
+
+
+        </div>
+
+
+        <div
+                id="doctorList"
+                class="data-grid">
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         PATIENTS
+         ================================================= -->
+
+    <section
+            id="patientsSection"
+            class="page-section content-section hidden">
+
+
+        <div class="section-header">
+
+
+            <div>
+
+                <span class="section-label">
+                    MANAGEMENT
+                </span>
+
+                <h2>
+                    👥 Patients
+                </h2>
+
+                <p>
+                    View registered patients.
+                </p>
+
+            </div>
+
+
+            <button
+                    class="secondary-button"
+                    onclick="loadPatients()">
+
+                ↻ Refresh
+
+            </button>
+
+
+        </div>
+
+
+        <div
+                id="patientList"
+                class="data-grid">
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         GENERATE TOKEN
+         ================================================= -->
+
+    <section
+            id="tokenSection"
+            class="page-section content-section hidden">
+
+
+        <div class="section-header">
+
+
+            <div>
+
+                <span class="section-label">
+                    TOKEN MANAGEMENT
+                </span>
+
+                <h2>
+                    🎫 Generate OPD Token
+                </h2>
+
+                <p>
+                    Create a new token for a patient.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="token-layout">
+
+
+            <div class="form-card">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Select Doctor
+                    </label>
+
+
+                    <select id="tokenDoctor">
+
+                        <option value="">
+                            Select Doctor
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Select Patient
+                    </label>
+
+
+                    <select id="tokenPatient">
+
+                        <option value="">
+                            Select Patient
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <label class="priority-option">
+
+                    <input
+                            type="checkbox"
+                            id="priorityToken">
+
+                    <span>
+                        ⭐ Mark as Priority Token
+                    </span>
+
+                </label>
+
+
+
+                <button
+                        class="primary-button large-button"
+                        onclick="generateToken()">
+
+                    🎫 Generate Token
+
+                </button>
+
+
+            </div>
+
+
+
+            <div
+                    id="tokenResult"
+                    class="token-result hidden">
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         LIVE QUEUE
+         ================================================= -->
+
+    <section
+            id="queueSection"
+            class="page-section content-section hidden">
+
+
+        <div class="section-header">
+
+
+            <div>
+
+                <span class="section-label">
+                    LIVE MONITORING
+                </span>
+
+                <h2>
+                    📋 Live OPD Queue
+                </h2>
+
+                <p>
+                    Monitor and manage the current queue.
+                </p>
+
+            </div>
+
+
+
+            <div class="queue-controls">
+
+
+                <select id="queueDoctor">
+
+                    <option value="">
+                        Select Doctor
+                    </option>
+
+                </select>
+
+
+                <button
+                        class="secondary-button"
+                        onclick="loadQueue()">
+
+                    ↻ Refresh
+
+                </button>
+
+
+                <button
+                        class="primary-button"
+                        onclick="advanceQueue()">
+
+                    Next Patient →
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div
+                id="queueList"
+                class="queue-list">
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         TOKEN HISTORY
+         ================================================= -->
+
+    <section
+            id="historySection"
+            class="page-section content-section hidden">
+
+
+        <div class="section-header">
+
+
+            <div>
+
+                <span class="section-label">
+                    RECORDS
+                </span>
+
+
+                <h2>
+                    📜 Token History
+                </h2>
+
+
+                <p>
+                    View today's OPD token activity.
+                </p>
+
+
+            </div>
+
+
+
+            <div class="queue-controls">
+
+
+                <select
+                        id="historyDoctor"
+                        onchange="loadHistory()">
+
+                    <option value="">
+                        Select Doctor
+                    </option>
+
+                </select>
+
+
+                <button
+                        class="secondary-button"
+                        onclick="loadHistory()">
+
+                    ↻ Refresh
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div
+                id="historyList"
+                class="history-list">
+
+            <div class="empty-message">
+
+                📋 Please select a doctor to view token history.
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         FOOTER
+         ================================================= -->
+
+    <footer>
+
+        <strong>
+            QueueEase
+        </strong>
+
+        <span>
+            • Smart OPD Queue Management System
+        </span>
+
+        <br>
+
+        <small>
+            © 2026 QueueEase. All rights reserved.
+        </small>
+
+    </footer>
+
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
